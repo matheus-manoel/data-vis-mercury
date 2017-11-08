@@ -37,8 +37,6 @@ class App extends Component {
              "Marcos", "Priscila"],
     datasets: [{
       label: 'Smart Leads Gerados',
-      data: [12, 19, 3, 5, 2, 3, 25, 14],
-      backgroundColor: this.colors,
       borderWidth: 1
     }]
   };
@@ -155,6 +153,9 @@ class App extends Component {
 
   render() {
     this.populateDataColors(this.lineData);
+    let stackedData = {...this.lineData};
+    stackedData.datasets = [...this.lineData.datasets];
+    stackedData.datasets.shift();
     return (
         <div className="App">
           <div>
@@ -164,7 +165,7 @@ class App extends Component {
             <Line data={this.lineData} options={this.chartOptions} width={600} height={250}/>
           </div>
           <div>
-            <HorizontalBar data={this.lineData} options={this.barOptions} width={600} height={250}/>
+            <HorizontalBar data={stackedData} options={this.barOptions} width={600} height={250}/>
           </div>
         </div>
     );
