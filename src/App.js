@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Bar, Line} from 'react-chartjs-2';
+import {Bar, Line, HorizontalBar} from 'react-chartjs-2';
 
 import './App.css';
 
@@ -83,6 +83,21 @@ class App extends Component {
     labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
              "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
     datasets: [{
+        label: 'Média',
+        data: this.getRandomValueArray(12, 30),
+        fill: false,
+        backgroundColor: '#000000',
+        pointBackgroundColor: '#000000',
+        borderColor: '#000000',
+        pointBorderColor: '#000000',
+        pointHoverBackgroundColor: '#000000',
+        pointHoverBorderColor: '#000000',
+        borderWidth: 2,
+        borderDash: [5],
+        type: 'line',
+        lineTension: 0,
+    },
+    {
         label: 'Marcelo',
         data: this.getRandomValueArray(12, 30),
         fill: false,
@@ -105,20 +120,6 @@ class App extends Component {
         data: this.getRandomValueArray(12, 30),
         fill: false,
         borderWidth: 2
-    },
-    {
-        label: 'Média',
-        data: this.getRandomValueArray(12, 30),
-        fill: false,
-        backgroundColor: '#000000',
-        pointBackgroundColor: '#000000',
-        borderColor: '#000000',
-        pointBorderColor: '#000000',
-        pointHoverBackgroundColor: '#000000',
-        pointHoverBorderColor: '#000000',
-        borderWidth: 2,
-        borderDash: [5],
-        type: 'line',
     },
     {
         label: 'Raquel',
@@ -147,6 +148,7 @@ class App extends Component {
         obj.pointBorderColor = color;
         obj.pointHoverBackgroundColor = color;
         obj.pointHoverBorderColor = color;
+        obj.lineTension = 0;
       }
     }
   }
@@ -160,6 +162,9 @@ class App extends Component {
           </div>
           <div>
             <Line data={this.lineData} options={this.chartOptions} width={600} height={250}/>
+          </div>
+          <div>
+            <HorizontalBar data={this.lineData} options={this.barOptions} width={600} height={250}/>
           </div>
         </div>
     );
